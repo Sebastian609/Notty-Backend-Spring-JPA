@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "team")
@@ -20,7 +20,7 @@ public class TeamEntity {
     @Column(length = 30,nullable = false)
     private String name;
     @Column(name = "created_at",nullable = false, columnDefinition = "DATETIME")
-    private Timestamp createrAt;
+    private LocalDateTime createrAt;
     @Column(name = "active_team",nullable = false, columnDefinition = "TINYINT")
     private Boolean activeTeam;
 }
