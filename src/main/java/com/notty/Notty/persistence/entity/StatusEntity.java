@@ -6,19 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
- @Table(name="rol")
+@Table(name="status")
 @Getter
 @Setter
 @NoArgsConstructor
-public class RolEntity {
+public class StatusEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_rol",nullable = false)
-    private Integer idRol;
-    @Column(length = 30,nullable = false )
-    private String name;
-    @Column(name = "active_rol",nullable = false,columnDefinition = "TINYINT")
+    @Column(name="id_status",nullable = false)
+    private Integer idStatus;
+    @Column(name = "active_status",nullable = false,columnDefinition = "TINYINT")
     private boolean activeRol;
-
-
 }

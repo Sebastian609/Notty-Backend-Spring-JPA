@@ -16,7 +16,7 @@ public class TeamEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_team",nullable = false)
-    private Integer idTask;
+    private Integer idTeam;
     @Column(length = 30,nullable = false)
     private String name;
     @Column(name = "created_at",nullable = false, columnDefinition = "DATETIME")
