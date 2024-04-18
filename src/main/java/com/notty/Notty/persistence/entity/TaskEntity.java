@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,12 +17,11 @@ public class TaskEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_task",nullable = false)
     private Integer idTask;
-    @Column(name = "id_user_owner",nullable = false)
-    private Integer idUserOwner;
+
     @Column(name = "id_user_creator",nullable = false)
     private Integer idUserCreator;
-    @Column(name = "id_task_status",nullable = false)
-    private Integer idTaskStatus;
+    @Enumerated(EnumType.STRING)
+    private TaskStatus taskStatus;
     @Column(length = 50,nullable = false)
     private String name;
     @Column(length = 50,nullable = false)
@@ -36,4 +34,15 @@ public class TaskEntity
     private LocalDateTime timeLimit;
     @Column(name = "active_task",nullable = false, columnDefinition = "TINYINT")
     private Boolean activeTask;
+
+    @ManyToOne
+    @JoinColumn(name="id_user_owner", referencedColumnName = "id_user")
+    private UserEntity userOwner;
+
+    public static enum TaskStatus{
+        LATE,COMPLETE,IN_PROGRESS,CANCELLED;
+    }
+
+
+
 }
