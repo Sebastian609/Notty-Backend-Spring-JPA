@@ -1,5 +1,6 @@
 package com.notty.Notty.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,8 +36,9 @@ public class TaskEntity
     @Column(name = "active_task",nullable = false, columnDefinition = "TINYINT")
     private Boolean activeTask;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_user_owner", referencedColumnName = "id_user")
+    @JsonIgnore
     private UserEntity userOwner;
 
     public static enum TaskStatus{

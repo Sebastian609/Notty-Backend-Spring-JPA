@@ -28,9 +28,6 @@ public class TeamEntity {
     @Column(name = "active_team", nullable = false, columnDefinition = "TINYINT")
     private Boolean activeTeam;
 
-    @ManyToMany
-    @JoinTable(name = "team_members",
-            joinColumns = @JoinColumn(name = "id_team"),
-            inverseJoinColumns = @JoinColumn(name = "id_user"))
-    private List<UserEntity> teamMembers;
+    @OneToMany(mappedBy = "team")
+    private List<TeamMembership> teamMemberships;
 }
