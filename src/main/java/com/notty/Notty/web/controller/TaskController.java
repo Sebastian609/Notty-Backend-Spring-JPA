@@ -60,5 +60,13 @@ public class TaskController {
         return ResponseEntity.badRequest().build();
     }
 
+    @GetMapping("delete/{taskId}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer taskId){
+        if(this.taskService.exists(taskId) && this.taskService.get(taskId).getActiveTask()){
+            return ResponseEntity.ok(this.taskService.delete(taskId));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
 
 }

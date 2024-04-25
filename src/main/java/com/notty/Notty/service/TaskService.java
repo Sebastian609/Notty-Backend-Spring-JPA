@@ -41,13 +41,26 @@ public class TaskService
     public TaskEntity changeTaskStatus(Integer id)
     {
         TaskEntity task = get(id);
-        if(task.getTimeLimit().isBefore(LocalDateTime.now()))
-        {
-            task.setTaskStatus(TaskEntity.TaskStatus.COMPLETED_WHIT_DELAY);
-            return task;
+        TaskEntity.TaskStatus newStatus;
+        if (task.getTimeLimit().isBefore(LocalDateTime.now())) {
+            newStatus = TaskEntity.TaskStatus.COMPLETED_WHIT_DELAY;
+        } else {
+            newStatus = TaskEntity.TaskStatus.COMPLETED;
         }
-        task.setTaskStatus(TaskEntity.TaskStatus.COMPLETED);
-        return task;
+        task.setTaskStatus(newStatus);
+        return taskRepository.save(task);
     }
+
+
+    public boolean delete(Integer id)
+    {
+        TaskEntity task = get(id);
+            task.setActiveTask(false);
+            taskRepository.save(task);
+            return true;
+
+    }
+
+
 
 }

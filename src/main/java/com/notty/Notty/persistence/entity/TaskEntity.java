@@ -47,7 +47,7 @@ public class TaskEntity
 
 
 
-    public static enum TaskStatus{
+    public enum TaskStatus{
         COMPLETED,IN_PROGRESS,CANCELLED,COMPLETED_WHIT_DELAY;
     }
 
