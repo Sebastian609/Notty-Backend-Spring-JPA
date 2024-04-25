@@ -1,6 +1,8 @@
 package com.notty.Notty.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,6 @@ public class TaskEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_task",nullable = false)
     private Integer idTask;
-
     @Column(name = "id_user_creator",nullable = false)
     private Integer idUserCreator;
     @Enumerated(EnumType.STRING)
@@ -38,11 +39,16 @@ public class TaskEntity
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_user_owner", referencedColumnName = "id_user")
-    @JsonIgnore
+    @JsonIgnoreProperties({"name", "firstLastName", "secondLastName", "mail", "password", "phone", "birthday", "signInAt", "activeUser", "rol", "teamMemberships", "personalTasks"})
     private UserEntity userOwner;
 
+    // Método para obtener solo el ID del usuario propietario
+
+
+
+
     public static enum TaskStatus{
-        LATE,COMPLETE,IN_PROGRESS,CANCELLED;
+        COMPLETED,IN_PROGRESS,CANCELLED,COMPLETED_WHIT_DELAY;
     }
 
 

@@ -6,5 +6,5 @@ import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 
 public interface TaskRepository extends ListCrudRepository<TaskEntity,Integer> {
-    List<TaskEntity> getByUserOwnerIdUser(Integer OwnerId);
+    public List<TaskEntity> getByUserOwnerIdUser(Integer idOwner);
 }

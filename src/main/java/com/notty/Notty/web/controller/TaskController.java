@@ -3,6 +3,7 @@ package com.notty.Notty.web.controller;
 import com.notty.Notty.persistence.entity.TaskEntity;
 import com.notty.Notty.persistence.entity.UserEntity;
 import com.notty.Notty.service.TaskService;
+import com.notty.Notty.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +27,6 @@ public class TaskController {
         return ResponseEntity.ok(this.taskService.getAll());
     }
 
-    @GetMapping("owner/{ownerId}")
-    public ResponseEntity<List<TaskEntity>> getByOwnerId(@PathVariable Integer ownerId){
-        return ResponseEntity.ok(this.taskService.getByOwneId(ownerId));
-    }
 
     @PostMapping
     public ResponseEntity<TaskEntity> save(@RequestBody TaskEntity task){
@@ -41,4 +38,19 @@ public class TaskController {
         }
         return ResponseEntity.badRequest().build();
     }
+    @GetMapping("changeStatus/{taskId}")
+    public ResponseEntity<TaskEntity> changeStatus(@PathVariable Integer taskId)
+    {
+        if(this.taskService.exists(taskId)){
+            return  ResponseEntity.ok(this.taskService.changeTaskStatus(taskId));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("owner/{ownerId}")
+    public ResponseEntity<List<TaskEntity>> getByOwnerId(@PathVariable Integer ownerId){
+        return ResponseEntity.ok(this.taskService.getByOwnerId(ownerId));
+    }
+
+
 }

@@ -45,5 +45,6 @@ public class UserController {
     public ResponseEntity<UserEntity> login(@PathVariable String mail,String password){
         return ResponseEntity.ok(this.userService.login(mail,password));
     }
+    
 
 }
