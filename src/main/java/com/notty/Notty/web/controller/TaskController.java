@@ -52,5 +52,13 @@ public class TaskController {
         return ResponseEntity.ok(this.taskService.getByOwnerId(ownerId));
     }
 
+    @PutMapping
+    public ResponseEntity<TaskEntity> update(@RequestBody TaskEntity task){
+        if(task.getIdTask() != null && this.taskService.exists(task.getIdTask())){
+            return ResponseEntity.ok(this.taskService.save(task));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
 
 }
