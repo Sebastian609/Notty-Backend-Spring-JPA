@@ -68,5 +68,10 @@ public class TaskController {
         return ResponseEntity.badRequest().build();
     }
 
+    @GetMapping("inProgress/beforeDeadLine/{userId}")
+    public ResponseEntity<List<TaskEntity>> getTodayTasks(@PathVariable Integer userId){
+        return ResponseEntity.ok(this.taskService.getTodayTasks(userId));
+    }
+
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.PublicKey;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -59,6 +60,11 @@ public class TaskService
             taskRepository.save(task);
             return true;
 
+    }
+
+    public List<TaskEntity> getTodayTasks(Integer  userId){
+        LocalDateTime today = LocalDate.now().atTime(0,0);
+        return this.taskRepository.findByUserOwnerIdUserAndTimeLimitBeforeAndTaskStatus(userId,today,TaskEntity.TaskStatus.IN_PROGRESS);
     }
 
 
