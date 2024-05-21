@@ -26,9 +26,9 @@
         private String secondLastName;
         @Column(length = 320,nullable = false)
         private String mail;
-        @Column(length = 16,nullable = false)
+        @Column(length = 250,nullable = false)
         private String password;
-        @Column(length = 20,nullable = false)
+        @Column(length = 16,nullable = false)
         private String phone;
         @Column(nullable = false, columnDefinition = "DATETIME")
         private LocalDateTime birthday;
@@ -37,14 +37,12 @@
         @Column(name = "active_user",nullable = false, columnDefinition = "TINYINT")
         private Boolean activeUser;
 
-        @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "id_rol")
-        private RolEntity rol;
-
         @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
         private List<TeamMembership> teamMemberships;
 
         @OneToMany(mappedBy = "userOwner", fetch = FetchType.LAZY) //lista de tareas individuales
 
         private List<TaskEntity> personalTasks;
+        @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+        private List<RolEntity> roles;
     }

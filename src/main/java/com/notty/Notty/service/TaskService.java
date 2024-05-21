@@ -67,6 +67,11 @@ public class TaskService
         return this.taskRepository.findByUserOwnerIdUserAndTimeLimitBeforeAndTaskStatus(userId,today,TaskEntity.TaskStatus.IN_PROGRESS);
     }
 
+    public List<TaskEntity> getAllActiveTasksByOwner(Integer  userId){
+        LocalDateTime today = LocalDate.now().atTime(0,0);
+        return this.taskRepository.getByUserOwnerIdUserAndActiveTaskIsTrue(userId);
+    }
+
 
 
 }

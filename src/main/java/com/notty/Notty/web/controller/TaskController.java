@@ -52,6 +52,11 @@ public class TaskController {
         return ResponseEntity.ok(this.taskService.getByOwnerId(ownerId));
     }
 
+    @GetMapping("owner/activeTasks/{ownerId}")
+    public ResponseEntity<List<TaskEntity>> getActiveTasksByOwnerID(@PathVariable Integer ownerId){
+        return ResponseEntity.ok(this.taskService.getAllActiveTasksByOwner(ownerId));
+    }
+
     @PutMapping
     public ResponseEntity<TaskEntity> update(@RequestBody TaskEntity task){
         if(task.getIdTask() != null && this.taskService.exists(task.getIdTask())){

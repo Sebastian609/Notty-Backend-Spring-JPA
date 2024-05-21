@@ -5,5 +5,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 public interface UserRepository extends ListCrudRepository<UserEntity,Integer>
 {
-    UserEntity findByMailAndPassword(String mail, String password);
+    public UserEntity findByMailAndPassword(String mail, String password);
+    public UserEntity findByIdUser(Integer id);
 }

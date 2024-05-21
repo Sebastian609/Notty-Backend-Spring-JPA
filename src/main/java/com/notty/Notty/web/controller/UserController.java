@@ -40,11 +40,17 @@ public class UserController {
         }
         return ResponseEntity.badRequest().build();
     }
-
-    @GetMapping("login/{mail}/{password}")
-    public ResponseEntity<UserEntity> login(@PathVariable String mail,String password){
-        return ResponseEntity.ok(this.userService.login(mail,password));
+    @GetMapping("/login/{mail}/{password}")
+    public ResponseEntity<UserEntity> login(@PathVariable String mail, @PathVariable String password) {
+        UserEntity user = this.userService.login(mail, password);
+        System.out.println(user);
+        if (user == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(user);
     }
+
+
     
 
 }

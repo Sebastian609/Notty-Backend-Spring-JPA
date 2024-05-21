@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.catalina.User;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -21,6 +23,12 @@ public class RolEntity {
     private String name;
     @Column(name = "active_rol",nullable = false, columnDefinition = "TINYINT")
     private boolean activeRol;
+    @Column(name = "granted_date",nullable = false,columnDefinition = "DATETIME")
+    private LocalDateTime grantedDate;
+
+    @ManyToOne
+    @JoinColumn(name = "idUser",referencedColumnName = "id_user",nullable = false,updatable = true)
+    private UserEntity user;
 
 
 
