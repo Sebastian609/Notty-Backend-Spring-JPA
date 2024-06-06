@@ -1,14 +1,9 @@
-package com.notty.Notty.service;
+package com.notty.Notty.Aplication;
 
-import com.notty.Notty.persistence.entity.UserEntity;
-import com.notty.Notty.persistence.repository.UserRepository;
+import com.notty.Notty.Domain.UserEntity;
+import com.notty.Notty.DataAccess.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 @Service
@@ -34,9 +29,11 @@ public class UserService {
         return this.userRepository.existsById(idUser);
     }
 
-    public UserEntity login(String mail, String password){
-        return this.userRepository.findByMailAndPassword(mail,password);
+    public int getIdByEmail(String email){
+        return  this.userRepository.findByMail(email).getIdUser();
     }
+
+
 
 
 

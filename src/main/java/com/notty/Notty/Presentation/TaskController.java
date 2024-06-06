@@ -1,9 +1,8 @@
-package com.notty.Notty.web.controller;
+package com.notty.Notty.Presentation;
 
-import com.notty.Notty.persistence.entity.TaskEntity;
-import com.notty.Notty.persistence.entity.UserEntity;
-import com.notty.Notty.service.TaskService;
-import com.notty.Notty.service.UserService;
+import com.notty.Notty.Domain.TaskEntity;
+
+import com.notty.Notty.Aplication.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-    package com.notty.Notty.persistence.entity;
+    package com.notty.Notty.Domain;
 
-    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonBackReference;
     import jakarta.persistence.*;
     import lombok.Getter;
     import lombok.NoArgsConstructor;
@@ -38,10 +38,11 @@
         private Boolean activeUser;
 
         @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+        @JsonBackReference
         private List<TeamMembership> teamMemberships;
 
         @OneToMany(mappedBy = "userOwner", fetch = FetchType.LAZY) //lista de tareas individuales
-
+        @JsonBackReference
         private List<TaskEntity> personalTasks;
         @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
         private List<RolEntity> roles;

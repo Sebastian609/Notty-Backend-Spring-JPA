@@ -1,13 +1,12 @@
-package com.notty.Notty.persistence.entity;
+package com.notty.Notty.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name="rol")
@@ -28,8 +27,8 @@ public class RolEntity {
 
     @ManyToOne
     @JoinColumn(name = "idUser",referencedColumnName = "id_user",nullable = false,updatable = true)
+    @JsonBackReference
     private UserEntity user;
-
 
 
 }

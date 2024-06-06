@@ -1,7 +1,7 @@
-package com.notty.Notty.service;
+package com.notty.Notty.Aplication;
 
-import com.notty.Notty.persistence.entity.TeamEntity;
-import com.notty.Notty.persistence.repository.TeamRepository;
+import com.notty.Notty.Domain.TeamEntity;
+import com.notty.Notty.DataAccess.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
-package com.notty.Notty.persistence.entity;
+package com.notty.Notty.Domain;
 
-import com.notty.Notty.persistence.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

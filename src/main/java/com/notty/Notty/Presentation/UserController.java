@@ -1,7 +1,7 @@
-package com.notty.Notty.web.controller;
+package com.notty.Notty.Presentation;
 
-import com.notty.Notty.persistence.entity.UserEntity;
-import com.notty.Notty.service.UserService;
+import com.notty.Notty.Domain.UserEntity;
+import com.notty.Notty.Aplication.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,14 +40,9 @@ public class UserController {
         }
         return ResponseEntity.badRequest().build();
     }
-    @GetMapping("/login/{mail}/{password}")
-    public ResponseEntity<UserEntity> login(@PathVariable String mail, @PathVariable String password) {
-        UserEntity user = this.userService.login(mail, password);
-        System.out.println(user);
-        if (user == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok(user);
+    @GetMapping("/login")
+    public boolean login() {
+        return true;
     }
 
 

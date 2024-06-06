@@ -1,8 +1,8 @@
-package com.notty.Notty.service;
+package com.notty.Notty.Aplication;
 
-import com.notty.Notty.persistence.entity.RolEntity;
-import com.notty.Notty.persistence.entity.UserEntity;
-import com.notty.Notty.persistence.repository.UserRepository;
+import com.notty.Notty.Domain.RolEntity;
+import com.notty.Notty.Domain.UserEntity;
+import com.notty.Notty.DataAccess.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,20 +20,25 @@ public class UserSecurityService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = this.userRepository.findById(Integer.parseInt(username))
-                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
+    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+        UserEntity userEntity = this.userRepository.findByMail(mail);
 
+        if (userEntity == null) {
+            throw new UsernameNotFoundException("User not found with email: " + mail);
+        }
 
-        String[] roles = userEntity.getRoles().stream().map(RolEntity::getName).toArray(String[]::new);
+        System.out.println(userEntity.getPassword()); // This should be removed in production
+
+        String[] roles = userEntity.getRoles().stream()
+                .map(RolEntity::getName)
+                .toArray(String[]::new);
 
         return User.builder()
                 .username(userEntity.getMail())
                 .password(userEntity.getPassword())
-                .roles(roles)
-                .accountLocked(userEntity.getActiveUser())
+                .roles(roles) // Using extracted roles
+                .accountLocked(false)
+                .disabled(false)
                 .build();
     }
-
-
 }

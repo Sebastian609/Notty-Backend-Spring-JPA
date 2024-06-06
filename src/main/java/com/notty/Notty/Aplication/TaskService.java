@@ -1,17 +1,17 @@
-package com.notty.Notty.service;
+package com.notty.Notty.Aplication;
 
-import com.notty.Notty.persistence.entity.TaskEntity;
-import com.notty.Notty.persistence.repository.TaskRepository;
+import com.notty.Notty.Domain.TaskEntity;
+
+import com.notty.Notty.DataAccess.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class TaskService
+public class    TaskService
 {
     private final TaskRepository taskRepository;
     @Autowired

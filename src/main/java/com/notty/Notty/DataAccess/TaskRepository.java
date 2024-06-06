@@ -1,9 +1,9 @@
-package com.notty.Notty.persistence.repository;
+package com.notty.Notty.DataAccess;
 
-import com.notty.Notty.persistence.entity.TaskEntity;
+import com.notty.Notty.Domain.TaskEntity;
+
 import org.springframework.data.repository.ListCrudRepository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
