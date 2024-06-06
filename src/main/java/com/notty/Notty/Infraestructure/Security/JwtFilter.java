@@ -1,4 +1,4 @@
-package com.notty.Notty.Infraestructure;
+package com.notty.Notty.Infraestructure.Security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -67,4 +67,6 @@ public class JwtFilter extends OncePerRequestFilter {
         filterChain.doFilter(request,response);
 
     }
+
+
 }

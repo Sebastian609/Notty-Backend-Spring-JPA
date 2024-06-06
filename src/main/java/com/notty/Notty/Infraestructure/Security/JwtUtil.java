@@ -1,4 +1,4 @@
-package com.notty.Notty.Infraestructure;
+package com.notty.Notty.Infraestructure.Security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
