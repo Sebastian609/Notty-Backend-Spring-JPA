@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,35 +13,39 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TaskEntity
-{
+public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_task",nullable = false)
+    @Column(name = "id_task", nullable = false)
     private Integer idTask;
-    @Column(name = "id_user_creator",nullable = false)
+
+    @Column(name = "id_user_creator", nullable = false)
     private Integer idUserCreator;
+
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
-    @Column(length = 50,nullable = false)
+
+    @Column(length = 50, nullable = false)
     private String name;
-    @Column(length = 50,nullable = false)
+
+    @Column(length = 50, nullable = false)
     private String description;
-    @Column(name = "created_at",nullable = false, columnDefinition = "DATETIME")
+
+    @Column(name = "created_at", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime createrAt;
-    @Column(name = "updated_at",nullable = false, columnDefinition = "DATETIME")
+
+    @Column(name = "updated_at", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime updatedAt;
-    @Column(name = "time_limit",nullable = false, columnDefinition = "DATETIME")
+
+    @Column(name = "time_limit", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime timeLimit;
-    @Column(name = "active_task",nullable = false, columnDefinition = "TINYINT")
+
+    @Column(name = "active_task", nullable = false, columnDefinition = "TINYINT")
     private Boolean activeTask;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_user_owner", referencedColumnName = "id_user")
-    @JsonBackReference
+    @JoinColumn(name = "id_user_owner", referencedColumnName = "id_user")
     private UserEntity userOwner;
-
-    // Método para obtener solo el ID del usuario propietario
 
     public enum TaskStatus{
         COMPLETED,IN_PROGRESS,CANCELLED,COMPLETED_WHIT_DELAY;
