@@ -19,6 +19,7 @@ public interface UserMapper {
             @Mapping(source = "name", target = "name"),
             @Mapping(source = "firstLastName", target = "firstLastName"),
             @Mapping(source = "secondLastName", target = "secondLastName"),
+
     })
     UserDTO UserToUserDTO(UserEntity userEntity);
 
@@ -26,12 +27,12 @@ public interface UserMapper {
 
     @InheritInverseConfiguration
     @Mapping(target = "mail", ignore = true)
+    @Mapping(target = "teamMemberships", ignore = true)
     @Mapping(target = "password", ignore = true)
     @Mapping(target = "phone", ignore = true)
     @Mapping(target = "birthday", ignore = true)
     @Mapping(target = "signInAt", ignore = true)
     @Mapping(target = "activeUser", ignore = true)
-    @Mapping(target = "teamMemberships", ignore = true)
     @Mapping(target = "personalTasks", ignore = true)
     @Mapping(target = "roles", ignore = true)
     UserEntity toUserEntity(UserDTO userDTO);

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "team_membership")
 @Getter
@@ -30,5 +32,8 @@ public class TeamMembership {
 
     @Column(name = "is_leader", nullable = false, columnDefinition = "TINYINT")
     private Boolean isLeader;
+
+    @OneToMany(mappedBy = "idTeamTask", fetch = FetchType.LAZY)
+    private List<TeamTaskEntity> teamTasks;
 }
 

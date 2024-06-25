@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class    TaskService
+public class  TaskService
 {
     private final TaskRepository taskRepository;
     @Autowired

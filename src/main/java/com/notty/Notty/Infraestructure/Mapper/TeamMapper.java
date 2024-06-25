@@ -17,12 +17,13 @@ public interface TeamMapper {
             @Mapping(source = "name", target = "name"),
             @Mapping(source = "createdAt", target = "createdAt"),
 
+
     })
     TeamDTO TeamToTeamDTO(TeamEntity teamEntity);
 
     List<TeamDTO> toTeamsDTOs(List<TeamEntity> teams);
 
     @InheritInverseConfiguration
-    @Mapping(target = "teamMemberships", ignore = true)
+    @Mapping( target = "teamMemberships",ignore=true)
     TeamEntity toTeamEntity(TeamDTO teamDTO);
 }

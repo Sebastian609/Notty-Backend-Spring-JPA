@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface TaskRepository extends ListCrudRepository<TaskEntity,Integer> {
     public List<TaskEntity> getByUserOwnerIdUser(Integer idOwner);
+    public List<TaskEntity> getByIdUserCreatorAndUserOwner(Integer idCreator, Integer idOwner);
     public List<TaskEntity> getByUserOwnerIdUserAndActiveTaskIsTrue(Integer idOwner);
     public List<TaskEntity> findByUserOwnerIdUserAndTimeLimitBeforeAndTaskStatus(Integer userOwner_idUser, LocalDateTime timeLimit, TaskEntity.TaskStatus taskStatus);
 }
