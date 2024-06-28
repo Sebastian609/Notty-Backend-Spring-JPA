@@ -27,5 +27,17 @@ public class TaskFactory {
         task.setDescription(dto.getDescription());
         task.setTimeLimit(dto.getTimeLimit());
         task.setActiveTask(dto.getActiveTask());
+
+        if(dto.getCreaterAt()!=null){
+            task.setCreaterAt(dto.getCreaterAt());
+        }
+
+        if(dto.getUpdatedAt()!=null){
+            task.setUpdatedAt(dto.getUpdatedAt());
+        }
+
+        if(dto.getTaskStatus()!=null){
+            task.setTaskStatus(dto.getTaskStatus());
+        }
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public interface TaskTeamMapper {
 
     @Mappings({
-            @Mapping(source = "idTeamTask", target = "idTaskTeam"),
+            @Mapping(source = "idTeamTask", target = "idTeamTask"),
             @Mapping(source = "name", target = "name"),
             @Mapping(source = "description", target = "description"),
             @Mapping(source = "createrAt", target = "createrAt"),

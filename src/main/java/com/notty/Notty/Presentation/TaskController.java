@@ -55,6 +55,7 @@ public class TaskController {
             return ResponseEntity.badRequest().build();
         }
 
+        System.out.println(genericDTO);
         TaskDTO newTaskDTO = TaskFactory.createTask(genericDTO);
         if (newTaskDTO == null) {
             return ResponseEntity.badRequest().build();
@@ -122,13 +123,13 @@ public class TaskController {
 
     @PutMapping
     public ResponseEntity<TaskDTO> update(@RequestBody GenericTaskDTO genericDTO) {
+
         if (genericDTO.getIdTask() != null && this.taskService.exists(genericDTO.getIdTask())) {
-            // Factory Method: Crear TaskDTO usando la fábrica
+
             TaskDTO newTaskDTO = TaskFactory.createTask(genericDTO);
             if (newTaskDTO == null) {
                 return ResponseEntity.badRequest().build();
             }
-
             // Convertir TaskDTO a la entidad correspondiente usando Strategy Pattern
             Task task = convertToTaskEntity(newTaskDTO);
             if (task == null) {
@@ -136,12 +137,16 @@ public class TaskController {
             }
 
             if (task instanceof TaskEntity) {
+               ((TaskEntity) task).setIdTask(genericDTO.getIdTask());
                 TaskEntity updatedTask = this.taskService.save((TaskEntity) task);
+
                 return ResponseEntity.ok(taskMapper.toTaskDTO(updatedTask));
             }
 
             if (task instanceof TeamTaskEntity) {
+                ((TaskEntity) task).setIdTask(genericDTO.getIdTaskTeam());
                 TeamTaskEntity updatedTask = this.taskTeamService.save((TeamTaskEntity) task);
+                updatedTask.setIdTeamTask(genericDTO.getIdTaskTeam());
                 return ResponseEntity.ok(taskTeamMapper.toTaskTeamDTO(updatedTask));
             }
         }

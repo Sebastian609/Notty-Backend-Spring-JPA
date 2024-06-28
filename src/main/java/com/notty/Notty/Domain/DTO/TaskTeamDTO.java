@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class TaskTeamDTO extends TaskDTO {
-    private Integer idTaskTeam;
+    private Integer idTeamTask;
 
 
 }
